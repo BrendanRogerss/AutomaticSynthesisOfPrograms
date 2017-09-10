@@ -13,6 +13,7 @@ public class Vertex {
 
     public Vertex(int v){
         vertexNumber = v;
+        color = 0;
     }
 
     public int getNumber(){

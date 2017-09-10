@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -9,9 +10,9 @@ import Graph.Vertex;
  Minimum Degree Ordering [32] vertex selection criterion; if
  the vertex does not exist, it returns false.
  */
-public class MinimumDegreeVertex extends VertexSearch {
+public class MinimumDegreeVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

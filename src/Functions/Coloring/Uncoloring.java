@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -8,9 +9,14 @@ import Graph.Vertex;
  the true value; if v has no color assigned, it returns false.
 
  */
-public class Uncoloring extends Coloring{
+public class Uncoloring extends Function{
 
-    public boolean run(Vertex v){
-
+    public boolean run(){
+        Vertex v = a.search();
+        if(v.color == 0){
+            return false;
+        }
+        v.color = 0;
+        return true;
     }
 }

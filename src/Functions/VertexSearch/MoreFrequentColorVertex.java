@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -9,9 +10,9 @@ import Graph.Vertex;
  graph; if it does not exist, it returns false.
  *
  */
-public class MoreFrequentColorVertex extends VertexSearch {
+public class MoreFrequentColorVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

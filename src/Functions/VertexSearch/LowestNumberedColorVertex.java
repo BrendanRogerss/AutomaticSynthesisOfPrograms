@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -8,9 +9,9 @@ import Graph.Vertex;
  numbered vertex with the lowest numbered color; if it does not
  exist, it returns false.
  */
-public class LowestNumberedColorVertex extends VertexSearch {
+public class LowestNumberedColorVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

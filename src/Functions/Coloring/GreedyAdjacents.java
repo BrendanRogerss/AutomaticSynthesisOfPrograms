@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -9,9 +10,17 @@ import Graph.Vertex;
  if it assigns at least one color to an adjacent vertex; otherwise, it
  returns false.
  */
-public class GreedyAdjacents extends Coloring{
+public class GreedyAdjacents extends Function{
 
-    public boolean run(Vertex v){
-
+    public boolean run(){
+        Vertex v = a.search();
+        Greedy colorer = new Greedy();
+        boolean assigned = false;
+        for (Vertex n : v.neighbours) {
+            if(colorer.assignColor(n)){
+                assigned = true;
+            }
+        }
+        return assigned;
     }
 }

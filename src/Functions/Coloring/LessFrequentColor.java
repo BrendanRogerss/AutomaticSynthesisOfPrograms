@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -10,9 +11,9 @@ import Graph.Vertex;
  the function changes the color assigned to the vertex, it returns
  true; otherwise, it returns false
  */
-public class LessFrequentColor extends Coloring{
+public class LessFrequentColor extends Function{
 
-    public boolean run(Vertex v){
-
+    public boolean run(){
+        return false;
     }
 }

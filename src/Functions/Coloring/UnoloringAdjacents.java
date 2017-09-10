@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -8,9 +9,9 @@ import Graph.Vertex;
  vertex adjacent to v and returns a true value if removing at
  least one color is feasible; otherwise, it returns false.
  */
-public class UnoloringAdjacents extends Coloring{
+public class UnoloringAdjacents extends Function{
 
-    public boolean run(Vertex v){
-
+    public boolean run(){
+        return false;
     }
 }

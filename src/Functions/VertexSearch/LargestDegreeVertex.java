@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -11,9 +12,9 @@ import Graph.Vertex;
  Degree Ordering [31] vertex selection criterion; if the vertex
  does not exist, it returns false.
  */
-public class LargestDegreeVertex extends VertexSearch {
+public class LargestDegreeVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

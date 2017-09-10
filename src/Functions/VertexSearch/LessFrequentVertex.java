@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -8,9 +9,9 @@ import Graph.Vertex;
  colored vertex with a less frequent color; if it does not
  exist, it returns false.
  */
-public class LessFrequentVertex extends VertexSearch {
+public class LessFrequentVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

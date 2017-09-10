@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -9,9 +10,9 @@ import Graph.Vertex;
  according to the vertex selection criterion of the RLF
  algorithm; if it does not find a vertex, it returns false.
  */
-public class MoreUncoloredAdjacentsVertex extends VertexSearch {
+public class MoreUncoloredAdjacentsVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }

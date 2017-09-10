@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -11,10 +12,10 @@ import Graph.Vertex;
  characteristic, it returns the lowest numbered vertex; otherwise,
  it returns false.
  */
-public class SaturationDegreeVertex extends VertexSearch {
+public class SaturationDegreeVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 
 }

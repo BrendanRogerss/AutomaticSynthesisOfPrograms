@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Functions.Function;
 import Graph.Vertex;
 
 /**
@@ -8,9 +9,9 @@ import Graph.Vertex;
  the First-Fit [31] vertex selection criterion, and returns false if
  it does not find a vertex with that characteristic.
  */
-public class FirstVertex extends VertexSearch {
+public class FirstVertex extends Function {
 
-    public Vertex run(){
-
+    public Vertex search(){
+        return null;
     }
 }
