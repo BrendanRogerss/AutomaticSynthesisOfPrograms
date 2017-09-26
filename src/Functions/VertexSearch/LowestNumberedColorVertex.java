@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
@@ -10,6 +11,12 @@ import Graph.Vertex;
  exist, it returns false.
  */
 public class LowestNumberedColorVertex extends Function {
+
+    public boolean run(){return search() != null;}
+
+    public LowestNumberedColorVertex(Tree t){
+        super(t);
+    }
 
     public Vertex search(){
         return null;

@@ -1,9 +1,8 @@
 package Functions.Coloring;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
-
-import java.util.ArrayList;
 
 /**
  * Created by Brendan on 9/09/2017.
@@ -14,17 +13,24 @@ import java.util.ArrayList;
  */
 public class Greedy extends Function{
 
+    public int getInputs(){return 1;}
+
+    public Greedy(Tree t){
+        super(t);
+    }
+
     public boolean run(){
-        return assignColor(a.search());
+        return assignColor(left.search());
     }
 
     public boolean assignColor(Vertex v){
+
         int newColor = Integer.MAX_VALUE;
         //https://stackoverflow.com/questions/1586858/find-the-smallest-integer-not-in-a-list
         int[] neighbourColors = new int[v.neighbours.size()];
         for (Vertex neighbour: v.neighbours) {
-            if(neighbour.color<neighbourColors.length){
-                neighbourColors[neighbour.color]=1;
+            if(t.graphColors[neighbour.index]<neighbourColors.length){
+                neighbourColors[t.graphColors[neighbour.index]]=1;
             }
         }
         for (int i = 0; i < neighbourColors.length; i++) {
@@ -37,8 +43,8 @@ public class Greedy extends Function{
             newColor = neighbourColors.length;
         }
 
-        if(v.color == 0 || v.color>newColor){
-            v.color = newColor;
+        if(t.graphColors[v.index] == 0 || t.graphColors[v.index]>newColor){
+            t.graphColors[v.index] = newColor;
             return true;
         }
         return false;

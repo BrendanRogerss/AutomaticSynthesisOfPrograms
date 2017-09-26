@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
@@ -11,13 +12,19 @@ import Graph.Vertex;
  */
 public class SwapColor extends Function{
 
-    public boolean run(){
-        Vertex v1 = a.search();
-        Vertex v2 = b.search();
+    public int getInputs(){return 2;}
 
-        int tempColor = v1.color;
-        v1.color = v2.color;
-        v2.color = tempColor;
+    public SwapColor(Tree t){
+        super(t);
+    }
+
+    public boolean run(){
+        Vertex v1 = left.search();
+        Vertex v2 = right.search();
+
+        int tempColor = t.graphColors[v1.index];
+        t.graphColors[v1.index] = t.graphColors[v2.index];
+        t.graphColors[v2.index] = tempColor;
 
         if(checkClash(v1) || checkClash(v2)){
             return false;
@@ -28,7 +35,7 @@ public class SwapColor extends Function{
     public boolean checkClash(Vertex v){
         //return true if clash
         for (Vertex neighbour : v.neighbours) {
-            if (v.color != 0 && v.color == neighbour.color) {
+            if (t.graphColors[v.index] != 0 && t.graphColors[v.index] == t.graphColors[neighbour.index]) {
                 return true;
             }
         }

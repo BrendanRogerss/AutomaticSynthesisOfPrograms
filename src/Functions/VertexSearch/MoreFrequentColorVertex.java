@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
@@ -11,6 +12,12 @@ import Graph.Vertex;
  *
  */
 public class MoreFrequentColorVertex extends Function {
+
+    public boolean run(){return search() != null;}
+
+    public MoreFrequentColorVertex(Tree t){
+        super(t);
+    }
 
     public Vertex search(){
         return null;

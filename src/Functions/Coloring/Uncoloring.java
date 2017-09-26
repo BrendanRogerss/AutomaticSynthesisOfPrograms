@@ -1,5 +1,6 @@
 package Functions.Coloring;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
@@ -11,12 +12,18 @@ import Graph.Vertex;
  */
 public class Uncoloring extends Function{
 
+    public int getInputs(){return 1;}
+
+    public Uncoloring(Tree t){
+        super(t);
+    }
+
     public boolean run(){
-        Vertex v = a.search();
-        if(v.color == 0){
+        Vertex v = left.search();
+        if(t.graphColors[v.index] == 0){
             return false;
         }
-        v.color = 0;
+        t.graphColors[v.index] = 0;
         return true;
     }
 }

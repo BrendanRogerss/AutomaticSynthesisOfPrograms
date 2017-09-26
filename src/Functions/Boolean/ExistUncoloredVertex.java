@@ -1,6 +1,8 @@
 package Functions.Boolean;
 
+import Evolution.Tree;
 import Functions.Function;
+import Graph.Vertex;
 
 /**
  * Created by Brendan on 9/09/2017.
@@ -8,4 +10,18 @@ import Functions.Function;
  remain in the graph
  */
 public class ExistUncoloredVertex extends Function {
+
+    public ExistUncoloredVertex(Tree t){
+        super(t);
+    }
+
+    public boolean run(){
+//        for(Vertex v : g.verticies){
+//            if (v.color == 0){
+//                return true;
+//            }
+//        }
+        return false;
+    }
+
 }

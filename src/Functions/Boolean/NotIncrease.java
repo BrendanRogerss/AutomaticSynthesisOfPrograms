@@ -1,5 +1,6 @@
 package Functions.Boolean;
 
+import Evolution.Tree;
 import Functions.Function;
 
 /**
@@ -8,4 +9,9 @@ import Functions.Function;
  an increase of the number of colors used to color the graph
  */
 public class NotIncrease extends Function{
+
+    public NotIncrease(Tree t){
+        super(t);
+    }
+
 }

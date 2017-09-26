@@ -1,3 +1,4 @@
+import Evolution.Genome;
 import Graph.Graph;
 import Graph.Scanner;
 
@@ -21,20 +22,9 @@ public class Main {
     }
 
     private void run(){
-        graphs = scanner.read();
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("GraphData.txt"));
-            writer.write(graphs.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (Graph g :
-                graphs) {
-            System.out.println(g.toString());
-        };
+        //graphs = scanner.read()
+        Genome g = new Genome();
+        g.printTree();
     }
 
 }

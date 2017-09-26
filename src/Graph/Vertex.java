@@ -7,21 +7,19 @@ import java.util.ArrayList;
  */
 public class Vertex {
 
-    public int vertexNumber;
-    public int color;
+    public int index;
     public ArrayList<Vertex> neighbours = new ArrayList<Vertex>();
 
     public Vertex(int v){
-        vertexNumber = v;
-        color = 0;
+        index = v;
     }
 
     public int getNumber(){
-        return vertexNumber;
+        return index;
     }
 
     public String toString(){
-        String vertices = Integer.toString(vertexNumber)+": ";
+        String vertices = Integer.toString(index)+": ";
         for (Vertex v : neighbours) {
             vertices+=Integer.toString(v.getNumber())+" ";
         }

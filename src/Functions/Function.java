@@ -1,7 +1,6 @@
 package Functions;
 
 import Evolution.Tree;
-import Graph.Graph;
 import Graph.Vertex;
 
 /**
@@ -9,9 +8,9 @@ import Graph.Vertex;
  */
 public class Function {
 
-    public Function a;
-    public Function b;
-    public Graph g;
+    public Function left;
+    public Function right;
+    public Tree t;
 
     public boolean run(){
         return false;
@@ -19,17 +18,21 @@ public class Function {
     public Vertex search(){
         return null;
     }
-    public Function(Tree t, Function a, Function b){
-        this.a = a;
-        this.b = b;
+    public Function(Tree t, Function left, Function right){
+        this.left = left;
+        this.right = right;
+        this.t = t;
     }
-    public Function(Tree t,Function a){
-        this.a = a;
+    public Function(Tree t,Function left){
+        this.left = left;
+        this.t = t;
     }
-    public Function(Tree t){}
+    public Function(Tree t){this.t=t;}
     public Function(){}
-    public int requiredInputs(){return 0;}
-    public void setFunctionA(Function a){this.a = a;}
-    public void setFunctionB(Function b){this.b = b;}
+    public void setFunctionLeft(Function a){this.left = a;}
+    public void setFunctionRight(Function b){this.right = b;}
+    public int getInputs(){
+        return 0;
+    }
 
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Graph {
 
-    ArrayList<Vertex> verticies;
+    public ArrayList<Vertex> verticies;
 
     public Graph(int size){
         verticies = new ArrayList<Vertex>(size);

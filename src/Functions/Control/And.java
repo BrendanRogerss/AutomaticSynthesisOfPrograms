@@ -7,8 +7,10 @@ import Functions.Function;
  */
 public class And extends Function {
 
+    public int getInputs(){return 2;}
+
     public boolean run(){
-        return(a.run() && b.run());
+        return(left.run() && right.run());
     }
 
 }

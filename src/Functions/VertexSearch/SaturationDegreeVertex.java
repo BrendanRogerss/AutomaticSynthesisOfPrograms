@@ -1,5 +1,6 @@
 package Functions.VertexSearch;
 
+import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
@@ -13,6 +14,12 @@ import Graph.Vertex;
  it returns false.
  */
 public class SaturationDegreeVertex extends Function {
+
+    public boolean run(){return search() != null;}
+
+    public SaturationDegreeVertex(Tree t){
+        super(t);
+    }
 
     public Vertex search(){
         return null;
