@@ -4,6 +4,8 @@ import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
+import java.util.ArrayList;
+
 /**
  * Created by Brendan on 9/09/2017.
  *Largest-degree-vertex: It identifies the vertex with the
@@ -22,6 +24,12 @@ public class LargestDegreeVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex largest = t.currentGraph.verticies.get(0);
+        for(Vertex v: t.currentGraph.verticies){
+            if(largest.neighbours.size()<v.neighbours.size()){
+                largest = v;
+            }
+        }
+        return largest;
     }
 }

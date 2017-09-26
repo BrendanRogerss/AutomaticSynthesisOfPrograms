@@ -16,7 +16,9 @@ public class FirstVertex extends Function {
         super(t);
     }
 
-    public boolean run(){return search() != null;}
+    public boolean run() {
+        return search() != null;
+    }
 
     public Vertex search(){
         for (int i = 0; i < t.graphColors.length; i++) {
