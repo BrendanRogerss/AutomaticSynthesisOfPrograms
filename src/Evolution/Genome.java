@@ -1,5 +1,6 @@
 package Evolution;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -25,6 +26,10 @@ public class Genome {
     }
     public void printTree(){
         tree.printTree(tree.root,0);
+    }
+    public void evaluate(){
+        //sets the fitness
+        ArrayList<int[]> graphColors = tree.run();
     }
 
 }

@@ -1,10 +1,8 @@
 import Evolution.Genome;
+import Evolution.Tree;
 import Graph.Graph;
 import Graph.Scanner;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -12,8 +10,7 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    Scanner scanner = new Scanner("Data");
-    private ArrayList<Graph> graphs;
+    private Scanner scanner = new Scanner("Data");
 
     public static void main(String[] args) {
         Main m = new Main();
@@ -22,7 +19,7 @@ public class Main {
     }
 
     private void run(){
-        //graphs = scanner.read()
+        Tree.graphs = scanner.read();
         Genome g = new Genome();
         g.printTree();
     }

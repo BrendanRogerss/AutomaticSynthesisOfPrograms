@@ -5,7 +5,8 @@ import Functions.Coloring.*;
 import Functions.Control.*;
 import Functions.Function;
 import Functions.VertexSearch.*;
-import Graph.Graph;
+import Graph.*;
+
 
 import java.util.ArrayList;
 
@@ -14,10 +15,10 @@ import java.util.ArrayList;
  */
 public class Tree {
 
+    public static ArrayList<Graph> graphs;
     public Graph currentGraph;
     public int[] graphColors;
     public int[] graphColorFreq;
-
     public Node root;
     private ArrayList<Function> genes = new ArrayList<>();
 
@@ -26,6 +27,18 @@ public class Tree {
         System.out.println("number of gene functions: "+genes.size());
         root = setNode();
         initFunctions(root);
+    }
+
+    public ArrayList<int[]> run(){
+        ArrayList<int[]> finalGraphColors = new ArrayList<>();
+        for (int i = 0; i < graphs.size(); i++) {
+            currentGraph = graphs.get(i);
+            graphColors = new int[graphs.size()];
+            graphColorFreq = new int[graphs.size()];
+            root.getFunction().run();
+            finalGraphColors.add(graphColors);
+        }
+        return finalGraphColors;
     }
 
     public void initFunctions(Node node){
