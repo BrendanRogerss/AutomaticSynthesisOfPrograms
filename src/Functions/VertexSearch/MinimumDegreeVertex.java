@@ -20,6 +20,12 @@ public class MinimumDegreeVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex smallest = t.currentGraph.verticies.get(0);
+        for(Vertex v: t.currentGraph.verticies){
+            if(smallest.neighbours.size()>v.neighbours.size()){
+                smallest = v;
+            }
+        }
+        return smallest;
     }
 }

@@ -21,6 +21,8 @@ public class LessFrequentColor extends Function{
     }
 
     public boolean run(){
-        return false;
+        //todo
+        Greedy greedy = new Greedy(t);
+        return greedy.run();
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    private Scanner scanner = new Scanner("Data");
+    private Scanner scanner = new Scanner("testData");
 
     public static void main(String[] args) {
         Main m = new Main();

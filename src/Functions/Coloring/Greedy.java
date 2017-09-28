@@ -19,8 +19,9 @@ public class Greedy extends Function{
         super(t);
     }
 
-    public boolean run(){
-        return assignColor(left.search());
+    public boolean run() {
+        Vertex v = left.search();
+        return v != null && assignColor(left.search());
     }
 
     public boolean assignColor(Vertex v){

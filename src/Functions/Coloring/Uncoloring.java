@@ -20,6 +20,9 @@ public class Uncoloring extends Function{
 
     public boolean run(){
         Vertex v = left.search();
+        if(v==null){
+            return false;
+        }
         if(t.graphColors[v.index] == 0){
             return false;
         }

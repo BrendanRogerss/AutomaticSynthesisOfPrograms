@@ -29,7 +29,15 @@ public class Genome {
     }
     public void evaluate(){
         //sets the fitness
+        fitness = 0;
         ArrayList<int[]> graphColors = tree.run();
+        for(int[] graphColorList: graphColors){
+            for (int i = 0; i < graphColorList.length; i++) {
+                if (graphColorList[i]!=0){
+                    fitness+=10;
+                }
+            }
+        }
     }
 
 }

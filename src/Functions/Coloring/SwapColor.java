@@ -22,6 +22,10 @@ public class SwapColor extends Function{
         Vertex v1 = left.search();
         Vertex v2 = right.search();
 
+        if(v1 == null || v2==null){
+            return false;
+        }
+
         int tempColor = t.graphColors[v1.index];
         t.graphColors[v1.index] = t.graphColors[v2.index];
         t.graphColors[v2.index] = tempColor;

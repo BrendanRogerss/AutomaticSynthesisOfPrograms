@@ -22,6 +22,9 @@ public class UncoloringAdjacents extends Function{
         boolean returnValue = false;
 
         Vertex input = left.search();
+        if(input==null){
+            return false;
+        }
         for(Vertex v : input.neighbours){
             if(t.graphColors[v.index] != 0){
                 returnValue = true;

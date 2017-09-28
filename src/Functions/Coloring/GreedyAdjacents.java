@@ -21,6 +21,9 @@ public class GreedyAdjacents extends Function{
 
     public boolean run(){
         Vertex v = left.search();
+        if(v == null){
+            return false;
+        }
         Greedy colorer = new Greedy(t);
         boolean assigned = false;
         for (Vertex n : v.neighbours) {

@@ -16,6 +16,8 @@ import Functions.Function;
  */
 public class While extends Function{
 
+    private int limit = 10;
+
     public int getInputs(){return 2;}
 
     public While(Tree t){
@@ -23,6 +25,29 @@ public class While extends Function{
     }
 
     public boolean run(){
+        boolean returnValue = false;
+        int[] colors = new int[t.graphColors.length];
+        System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
+        int timesSame = 0;
+        while(left.run() && timesSame!= limit){
+            right.run();
+            if(checkChange(colors)){
+                System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
+                timesSame = 0;
+                returnValue = true;
+            }else{
+                timesSame+=1;
+            }
+        }
+        return returnValue;
+    }
+
+    private boolean checkChange(int[] lastKnown){
+        for (int i = 0; i < lastKnown.length; i++) {
+            if(lastKnown[i]!=t.graphColors[i]){
+                return true;
+            }
+        }
         return false;
     }
 
