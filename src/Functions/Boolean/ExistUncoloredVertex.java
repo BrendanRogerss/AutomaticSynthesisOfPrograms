@@ -16,11 +16,11 @@ public class ExistUncoloredVertex extends Function {
     }
 
     public boolean run(){
-//        for(Vertex v : g.verticies){
-//            if (v.color == 0){
-//                return true;
-//            }
-//        }
+        for(Vertex v : t.currentGraph.verticies){
+            if (t.graphColors[v.index]==0){
+                return true;
+            }
+        }
         return false;
     }
 

@@ -24,7 +24,7 @@ public class Tree {
 
     public Tree(String sGenes){
         splitGenes(sGenes);
-        System.out.println("number of gene functions: "+genes.size());
+        //System.out.println("number of gene functions: "+genes.size());
         root = setNode();
         initFunctions(root);
     }
@@ -33,8 +33,8 @@ public class Tree {
         ArrayList<int[]> finalGraphColors = new ArrayList<>();
         for (int i = 0; i < graphs.size(); i++) {
             currentGraph = graphs.get(i);
-            graphColors = new int[graphs.size()];
-            graphColorFreq = new int[graphs.size()];
+            graphColors = new int[currentGraph.verticies.size()];
+            graphColorFreq = new int[currentGraph.verticies.size()+1];
             root.getFunction().run();
             finalGraphColors.add(graphColors);
         }
@@ -113,7 +113,7 @@ public class Tree {
     }
 
     private void splitGenes(String genes){
-        for (int i = 5; i < genes.length(); i+=5) {
+        for (int i = 5; i <= genes.length(); i+=5) {
             this.genes.add(transform(genes.substring(i-5, i)));
         }
     }

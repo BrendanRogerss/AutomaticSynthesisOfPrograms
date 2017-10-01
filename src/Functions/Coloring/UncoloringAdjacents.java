@@ -20,7 +20,9 @@ public class UncoloringAdjacents extends Function{
 
     public boolean run(){
         boolean returnValue = false;
-
+        if(left==null){
+            return false;
+        }
         Vertex input = left.search();
         if(input==null){
             return false;
@@ -28,6 +30,7 @@ public class UncoloringAdjacents extends Function{
         for(Vertex v : input.neighbours){
             if(t.graphColors[v.index] != 0){
                 returnValue = true;
+                t.graphColorFreq[t.graphColors[v.index]]--;
                 t.graphColors[v.index] = 0;
             }
         }

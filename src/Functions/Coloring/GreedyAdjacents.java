@@ -20,6 +20,9 @@ public class GreedyAdjacents extends Function{
     }
 
     public boolean run(){
+        if(left==null){
+            return false;
+        }
         Vertex v = left.search();
         if(v == null){
             return false;

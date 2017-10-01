@@ -20,6 +20,19 @@ public class MoreFrequentColorVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        //find the highest numbered freq
+        int highestFreq = 0;
+        int highestFreqIndex = 0;
+        for (int i = 0; i < t.currentGraph.verticies.size(); i++) {
+            if (t.graphColorFreq[i]>=highestFreq){
+                highestFreq = t.graphColorFreq[i];
+                highestFreqIndex = i;
+            }
+        }
+        if(highestFreq==0){
+            return null;
+        }
+
+        return t.currentGraph.verticies.get(highestFreqIndex);
     }
 }

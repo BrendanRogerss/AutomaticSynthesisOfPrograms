@@ -13,6 +13,10 @@ public class If extends Function {
     public int getInputs(){return 2;}
 
     public boolean run(){
+        if(left==null || right==null){
+            return false;
+        }
+
         if(left.run()){
             right.run();
             return true;

@@ -25,11 +25,17 @@ public class While extends Function{
     }
 
     public boolean run(){
+        if(left==null || right==null){
+            return false;
+        }
+
         boolean returnValue = false;
         int[] colors = new int[t.graphColors.length];
         System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
         int timesSame = 0;
-        while(left.run() && timesSame!= limit){
+        int timesRun = 0;
+        while(left.run() && timesSame!= limit && timesRun != 100){
+            //printColors(colors);
             right.run();
             if(checkChange(colors)){
                 System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
@@ -38,6 +44,7 @@ public class While extends Function{
             }else{
                 timesSame+=1;
             }
+            timesRun++;
         }
         return returnValue;
     }
@@ -49,6 +56,13 @@ public class While extends Function{
             }
         }
         return false;
+    }
+
+    public void printColors(int[] colors){
+        for (int i = 0; i < colors.length; i++) {
+            System.out.print(colors[i]);
+        }
+        System.out.println();
     }
 
 }

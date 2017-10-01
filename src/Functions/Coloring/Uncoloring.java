@@ -19,6 +19,10 @@ public class Uncoloring extends Function{
     }
 
     public boolean run(){
+        if(left==null){
+            return false;
+        }
+
         Vertex v = left.search();
         if(v==null){
             return false;
@@ -26,6 +30,7 @@ public class Uncoloring extends Function{
         if(t.graphColors[v.index] == 0){
             return false;
         }
+        t.graphColorFreq[t.graphColors[v.index]]--;
         t.graphColors[v.index] = 0;
         return true;
     }

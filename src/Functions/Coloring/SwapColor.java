@@ -19,6 +19,10 @@ public class SwapColor extends Function{
     }
 
     public boolean run(){
+        if(left==null || right==null){
+            return false;
+        }
+
         Vertex v1 = left.search();
         Vertex v2 = right.search();
 

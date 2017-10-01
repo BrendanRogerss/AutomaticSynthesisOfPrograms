@@ -17,10 +17,10 @@ public class Graph {
     }
 
     public void removeLonelyVertex(){
-        for (int i = verticies.size()-1; i > 0; i--) {
+        for (int i = verticies.size()-1; i >= 0; i--) {
             if (verticies.get(i).neighbours.size() == 0){
                 verticies.remove(i);
-                System.out.println("removing: "+i);
+                //System.out.println("removing: "+i);
             }
         }
     }

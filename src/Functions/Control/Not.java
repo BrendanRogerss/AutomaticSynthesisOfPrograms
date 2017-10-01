@@ -10,6 +10,9 @@ public class Not extends Function {
     public int getInputs(){return 1;}
 
     public boolean run(){
+        if(left==null){
+            return false;
+        }
         return(!left.run());
     }
 }

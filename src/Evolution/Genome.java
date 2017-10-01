@@ -1,17 +1,18 @@
 package Evolution;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
  * Created by Brendan on 26/09/2017.
  */
-public class Genome {
+public class Genome implements Comparable {
 
     private int size = 160;
     private String genes = "";
     private Tree tree;
-    private float fitness;
+    private int fitness;
 
     public Genome(){
         //generate left random genome
@@ -23,21 +24,39 @@ public class Genome {
     }
     public Genome(String genes){
         this.genes = genes;
+        tree = new Tree(genes);
+    }
+    public String getGenes(){
+        return genes;
     }
     public void printTree(){
         tree.printTree(tree.root,0);
     }
     public void evaluate(){
         //sets the fitness
-        fitness = 0;
+        //System.out.println(getGenes());
+        fitness = 1000;
         ArrayList<int[]> graphColors = tree.run();
         for(int[] graphColorList: graphColors){
-            for (int i = 0; i < graphColorList.length; i++) {
-                if (graphColorList[i]!=0){
-                    fitness+=10;
+            HashSet<Integer> set = new HashSet<>();
+            for (int i = 0; i < graphColorList.length; i++) {//minus points for uncolored nodes
+                if (graphColorList[i]==0){
+                    fitness-=50;
+                }else{
+                    set.add(graphColorList[i]);
                 }
             }
+            fitness-=set.size()*10;
         }
     }
 
+
+    public int getFitness(){
+        return fitness;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return ((Genome)o).getFitness()-getFitness();
+    }
 }

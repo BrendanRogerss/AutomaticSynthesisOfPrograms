@@ -10,6 +10,9 @@ public class Or extends Function {
     public int getInputs(){return 2;}
 
     public boolean run(){
+        if(left==null || right==null){
+            return false;
+        }
         return(left.run() || right.run());
     }
 }

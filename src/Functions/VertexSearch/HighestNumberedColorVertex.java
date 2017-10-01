@@ -19,6 +19,14 @@ public class HighestNumberedColorVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex returnV = null;
+        int highestColor = 0;
+        for(Vertex v : t.currentGraph.verticies){
+            if(t.graphColors[v.index]>= highestColor){
+                highestColor = t.graphColors[v.index];
+                returnV = v;
+            }
+        }
+        return returnV;
     }
 }

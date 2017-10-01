@@ -22,7 +22,10 @@ public class LessFrequentColor extends Function{
 
     public boolean run(){
         //todo
-        Greedy greedy = new Greedy(t);
-        return greedy.run();
+//        Greedy greedy = new Greedy(t);
+//        greedy.setFunctionLeft(left);
+//        greedy.setFunctionRight(right);
+//        return greedy.run();
+        return true;
     }
 }

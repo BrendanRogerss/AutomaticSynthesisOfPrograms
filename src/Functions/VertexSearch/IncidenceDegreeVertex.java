@@ -20,6 +20,27 @@ public class IncidenceDegreeVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex returnV = null;
+        int highestColored = 0;
+        int currentColored;
+        for(Vertex v : t.currentGraph.verticies){
+            currentColored = coloredAdjacents(v);
+            if(currentColored > highestColored){
+                highestColored = currentColored;
+                returnV = v;
+            }
+        }
+        return returnV;
+    }
+
+    private int coloredAdjacents(Vertex input){
+        int coloredAdjacents = 0;
+        for(Vertex v : input.neighbours){
+            if(t.graphColors[v.index]!=0){
+                coloredAdjacents++;
+            }
+        }
+
+        return coloredAdjacents;
     }
 }

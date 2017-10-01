@@ -21,7 +21,7 @@ public class FirstVertex extends Function {
     }
 
     public Vertex search(){
-        for (int i = 0; i < t.graphColors.length; i++) {
+        for (int i = 0; i < t.currentGraph.verticies.size(); i++) {
             if(t.graphColors[i]==0){
                 return t.currentGraph.verticies.get(i);
             }

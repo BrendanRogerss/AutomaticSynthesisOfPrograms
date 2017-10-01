@@ -4,6 +4,8 @@ import Evolution.Tree;
 import Functions.Function;
 import Graph.Vertex;
 
+import java.util.ArrayList;
+
 /**
  * Created by Brendan on 9/09/2017.
  * Saturation-degree-vertex: It identifies the vertex with the
@@ -22,7 +24,27 @@ public class SaturationDegreeVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex currentTop = null;
+        int currentMost = 0;
+        int tempAdjacent;
+        for(Vertex v : t.currentGraph.verticies){
+            tempAdjacent = differentAdjacent(v);
+            if(tempAdjacent > currentMost){
+                currentMost = tempAdjacent;
+                currentTop = v;
+            }
+        }
+        return currentTop;
+    }
+
+    private int differentAdjacent(Vertex input){
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(Vertex v : input.neighbours){
+            if(!colors.contains(t.graphColors[v.index])){
+                colors.add(t.graphColors[v.index]);
+            }
+        }
+        return colors.size();
     }
 
 }

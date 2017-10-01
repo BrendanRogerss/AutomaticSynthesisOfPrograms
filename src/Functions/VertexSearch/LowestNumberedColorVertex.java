@@ -19,6 +19,17 @@ public class LowestNumberedColorVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex returnV = null;
+        int lowestColor = Integer.MAX_VALUE;
+        int currentColor;
+        for(Vertex v: t.currentGraph.verticies){
+            currentColor = t.graphColors[v.index];
+            if(currentColor<=lowestColor && currentColor!=0){
+                lowestColor = currentColor;
+                returnV = v;
+            }
+        }
+
+        return returnV;
     }
 }

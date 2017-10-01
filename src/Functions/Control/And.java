@@ -12,6 +12,10 @@ public class And extends Function {
     }
 
     public boolean run() {
+        if(left==null || right==null){
+            return false;
+        }
+
         return (left.run() && right.run());
     }
 

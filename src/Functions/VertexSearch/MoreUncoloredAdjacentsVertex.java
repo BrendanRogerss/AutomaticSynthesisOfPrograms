@@ -21,6 +21,28 @@ public class MoreUncoloredAdjacentsVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        Vertex returnV = null;
+        int currentMax = 0;
+        int testMax;
+        for(Vertex v : t.currentGraph.verticies){
+            testMax = uncoloredAdjacents(v);
+            if(testMax>currentMax){
+                currentMax = testMax;
+                returnV = v;
+            }
+        }
+        return returnV;
+    }
+
+    private int uncoloredAdjacents(Vertex input){
+        int uncoloredAdjacents = 0;
+
+        for(Vertex v : input.neighbours){
+            if(t.graphColors[v.index] == 0){
+                uncoloredAdjacents++;
+            }
+        }
+
+        return uncoloredAdjacents;
     }
 }

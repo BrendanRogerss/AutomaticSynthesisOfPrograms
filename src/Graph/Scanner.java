@@ -39,9 +39,9 @@ public class Scanner {
             System.out.println("No directory exists");
         }
 
-        for (Graph g : graphs) {
-            g.removeLonelyVertex();
-        }
+//        for (Graph g : graphs) {
+//            g.removeLonelyVertex();
+//        }
         
         return graphs;
     }

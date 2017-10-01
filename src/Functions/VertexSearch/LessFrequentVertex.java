@@ -19,6 +19,19 @@ public class LessFrequentVertex extends Function {
     }
 
     public Vertex search(){
-        return null;
+        //find the highest numbered freq
+        int lowestFreq = Integer.MAX_VALUE;
+        int lowestFreqIndex = 0;
+        for (int i = 0; i < t.graphColorFreq.length; i++) {
+            if (t.graphColorFreq[i]<lowestFreq && t.graphColorFreq[i]!=0){
+                lowestFreq = t.graphColorFreq[i];
+                lowestFreqIndex = i;
+            }
+        }
+        if(lowestFreq==Integer.MAX_VALUE){
+            return null;
+        }
+
+        return t.currentGraph.verticies.get(lowestFreqIndex);
     }
 }

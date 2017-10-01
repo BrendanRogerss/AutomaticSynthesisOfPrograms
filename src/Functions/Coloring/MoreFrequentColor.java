@@ -21,8 +21,42 @@ public class MoreFrequentColor extends Function {
     }
 
     public boolean run(){
-        //todo
-        Greedy greedy = new Greedy(t);
-        return greedy.run();
+        if(left==null){
+            return false;
+        }
+
+        Vertex v = left.search();
+        if(v == null){
+            return false;
+        }
+
+        int color = 0;
+        int freq = 0;
+        for (int i = 0; i < t.graphColorFreq.length; i++) {
+            if(t.graphColorFreq[i]>freq){
+                freq = t.graphColorFreq[i];
+                color=i;
+            }
+        }
+        if(color!=0 && !clash(v, color)){
+            t.graphColorFreq[t.graphColors[v.index]]--;
+            t.graphColors[v.index] = color;
+            t.graphColorFreq[color]++;
+            return true;
+        }else{
+            Greedy greedy = new Greedy(t);
+            greedy.setFunctionLeft(left);
+            greedy.setFunctionRight(right);
+            return greedy.run();
+        }
+    }
+
+    private boolean clash(Vertex v,int color){
+        for( Vertex n : v.neighbours){
+            if(t.graphColors[n.index]==color){
+                return true;
+            }
+        }
+        return false;
     }
 }
