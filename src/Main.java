@@ -34,10 +34,10 @@ public class Main {
 
         //Genome g = new Genome("11111000000001001111");//greedy binary
         Genome g = new Genome("10000000000001101000");//greedy gray code
+        //Genome g = new Genome("1000010001000110100011010000111010111011010010111111001100000101010101010110100110101000001000010011111110000100101000011100010100101011111001001100000000100010");
         g.evaluate();
         System.out.println(g.getFitness());
         g.printTree();
-
 
         evolve();
 
@@ -62,7 +62,8 @@ public class Main {
         highestFitness=population.get(0);
         int lastImprovement = 0;
         do {
-            population = newPopulation(population.get(0));
+            //population = newPopulation(population.get(0));
+            population = mutator.newPopulation(population);
             population.forEach(Genome::evaluate);
             Collections.sort(population);
             if (population.get(0).getFitness() < highestFitness.getFitness()) {
