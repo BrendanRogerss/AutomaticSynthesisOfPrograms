@@ -21,11 +21,39 @@ public class LessFrequentColor extends Function{
     }
 
     public boolean run(){
-        //todo
-//        Greedy greedy = new Greedy(t);
-//        greedy.setFunctionLeft(left);
-//        greedy.setFunctionRight(right);
-//        return greedy.run();
-        return true;
+        if(left==null){
+            return false;
+        }
+
+        Vertex v = left.search();
+        if(v == null){
+            return false;
+        }
+
+        int color = 0;
+        int minFreq = Integer.MIN_VALUE;
+
+        for (int i = 0; i < t.graphColorFreq.length; i++) {
+            if(t.graphColorFreq[i]<minFreq){
+                color=i;
+                minFreq = t.graphColorFreq[i];
+            }
+        }
+
+
+        MoreFrequentColor clasher = new MoreFrequentColor(t);
+
+        if(color!=Integer.MAX_VALUE && !clasher.clash(v, color)){
+            t.graphColorFreq[t.graphColors[v.index]]--;
+            t.graphColors[v.index] = color;
+            t.graphColorFreq[color]++;
+            return true;
+        }else{
+            Greedy greedy = new Greedy(t);
+            greedy.setFunctionLeft(left);
+            greedy.setFunctionRight(right);
+            return greedy.run();
+        }
+
     }
 }

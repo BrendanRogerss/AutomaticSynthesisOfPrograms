@@ -34,7 +34,7 @@ public class While extends Function{
         System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
         int timesSame = 0;
         int timesRun = 0;
-        while(left.run() && timesSame!= limit && timesRun != 100){
+        while(left.run() && timesSame!= limit && timesRun != t.currentGraph.verticies.size()){
             //printColors(colors);
             right.run();
             if(checkChange(colors)){

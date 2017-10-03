@@ -32,6 +32,7 @@ c max degree          : 139
 c avg degree          : 74.13
 c min degree          : 18
 p edge 450 16680
+m 15
 e 1 425
 e 1 343
 e 1 159

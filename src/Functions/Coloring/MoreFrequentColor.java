@@ -51,7 +51,7 @@ public class MoreFrequentColor extends Function {
         }
     }
 
-    private boolean clash(Vertex v,int color){
+    public boolean clash(Vertex v,int color){
         for( Vertex n : v.neighbours){
             if(t.graphColors[n.index]==color){
                 return true;

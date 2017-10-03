@@ -16,8 +16,9 @@ public class ExistUncoloredVertex extends Function {
     }
 
     public boolean run(){
-        for(Vertex v : t.currentGraph.verticies){
-            if (t.graphColors[v.index]==0){
+        //for(Vertex v : t.currentGraph.verticies){
+        for (int i = 0; i < t.graphColors.length; i++) {
+            if (t.graphColors[i]==0){
                 return true;
             }
         }

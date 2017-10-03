@@ -29,6 +29,8 @@ public class Scanner {
                             graphs.add(0,new Graph(Integer.parseInt(splited[2])));
                         }else if(line.charAt(0)=='e'){
                             graphs.get(0).add(Integer.parseInt(splited[1])-1, Integer.parseInt(splited[2])-1);
+                        }else if(line.charAt(0)=='m'){
+                            graphs.get(0).minimalColor = Integer.parseInt(splited[1]);
                         }
                     }
                 } catch (Exception e) {

@@ -35,6 +35,9 @@ public class SwapColor extends Function{
         t.graphColors[v2.index] = tempColor;
 
         if(checkClash(v1) || checkClash(v2)){
+            tempColor = t.graphColors[v1.index];
+            t.graphColors[v1.index] = t.graphColors[v2.index];
+            t.graphColors[v2.index] = tempColor;
             return false;
         }
         return true;

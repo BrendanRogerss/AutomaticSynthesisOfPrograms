@@ -13,7 +13,7 @@ import java.util.Comparator;
  */
 public class Main {
 
-    private Scanner scanner = new Scanner("testData");
+    private Scanner scanner = new Scanner("Data");
     private int populationSize = 100;
     private Mutator mutator = new Mutator();
 
@@ -25,41 +25,21 @@ public class Main {
 
     private void run(){
         Tree.graphs = scanner.read();
-//        Genome g = new Genome("11111000000001001111");
-//        g.evaluate();
-//        System.out.println(g.getFitness());
-//        g.printTree();
-
-
-
-        ArrayList<Genome> population = new ArrayList<>();
-        for (int i = 0; i < populationSize; i++) {
-            population.add(new Genome());
+        int v = 0;
+        for(Graph g : Tree.graphs){
+            v+=g.minimalColor;
         }
-        Genome highestFitness = new Genome();
-        highestFitness.evaluate();
-        population.forEach(Genome::evaluate);
-        Collections.sort(population);
-        int lastImprovement = 0;
-        do {
-            population = newPopulation(population.get(0));
-            population.forEach(Genome::evaluate);
-            Collections.sort(population);
-            if (population.get(0).getFitness() > highestFitness.getFitness()) {
-                highestFitness = population.get(0);
-                lastImprovement = 0;
-            } else {
-                lastImprovement++;
-            }
-            System.out.println(population.get(0).getFitness());
-
-        }while(lastImprovement!=100);
-        //}while(population.get(0).getFitness()<=550);
-        System.out.println(highestFitness.getGenes());
-        System.out.println(highestFitness.getFitness());
-        population.get(0).printTree();
+        System.out.println(v*10);
 
 
+        //Genome g = new Genome("11111000000001001111");//greedy binary
+        Genome g = new Genome("10000000000001101000");//greedy gray code
+        g.evaluate();
+        System.out.println(g.getFitness());
+        g.printTree();
+
+
+        evolve();
 
     }
 
@@ -69,6 +49,35 @@ public class Main {
             newPop.add(new Genome(mutator.mutate(champion.getGenes())));
         }
         return newPop;
+    }
+
+    public void evolve(){
+        ArrayList<Genome> population = new ArrayList<>();
+        for (int i = 0; i < populationSize; i++) {
+            population.add(new Genome());
+        }
+        Genome highestFitness;
+        population.forEach(Genome::evaluate);
+        Collections.sort(population);
+        highestFitness=population.get(0);
+        int lastImprovement = 0;
+        do {
+            population = newPopulation(population.get(0));
+            population.forEach(Genome::evaluate);
+            Collections.sort(population);
+            if (population.get(0).getFitness() < highestFitness.getFitness()) {
+                highestFitness = population.get(0);
+                lastImprovement = 0;
+            } else {
+                lastImprovement++;
+            }
+            System.out.println(population.get(0).getFitness());
+
+        }while(lastImprovement!=100);
+        //}while(population.get(0).getFitness()<=860);
+        System.out.println(highestFitness.getGenes());
+        System.out.println(highestFitness.getFitness());
+        population.get(0).printTree();
     }
 
 }

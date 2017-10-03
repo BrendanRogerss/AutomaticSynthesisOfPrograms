@@ -35,19 +35,22 @@ public class Genome implements Comparable {
     public void evaluate(){
         //sets the fitness
         //System.out.println(getGenes());
-        fitness = 1000;
+        int uncoloredVerticies = 0;
+        fitness = 0;
         ArrayList<int[]> graphColors = tree.run();
         for(int[] graphColorList: graphColors){
             HashSet<Integer> set = new HashSet<>();
             for (int i = 0; i < graphColorList.length; i++) {//minus points for uncolored nodes
                 if (graphColorList[i]==0){
-                    fitness-=50;
+                    fitness+=50;
+                    uncoloredVerticies++;
                 }else{
                     set.add(graphColorList[i]);
                 }
             }
-            fitness-=set.size()*10;
+            fitness+=set.size()*10;
         }
+        //System.out.println("Uncolored Verticies: "+uncoloredVerticies);
     }
 
 
@@ -57,6 +60,6 @@ public class Genome implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return ((Genome)o).getFitness()-getFitness();
+        return getFitness()-((Genome)o).getFitness();
     }
 }

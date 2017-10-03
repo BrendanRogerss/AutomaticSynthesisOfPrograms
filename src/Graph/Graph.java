@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Graph {
 
     public ArrayList<Vertex> verticies;
+    public int minimalColor;
 
     public Graph(int size){
         verticies = new ArrayList<Vertex>(size);
