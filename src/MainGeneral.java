@@ -6,19 +6,18 @@ import Graph.Scanner;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by Brendan on 8/09/2017.
  */
-public class Main {
+public class MainGeneral {
 
     private Scanner scanner = new Scanner("Data");
     private int populationSize = 100;
     private Mutator mutator = new Mutator();
 
     public static void main(String[] args) {
-        Main m = new Main();
+        MainGeneral m = new MainGeneral();
         m.run();
 
     }
