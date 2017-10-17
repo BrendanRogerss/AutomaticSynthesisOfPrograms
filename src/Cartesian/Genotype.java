@@ -1,5 +1,7 @@
 package Cartesian;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -7,12 +9,13 @@ import java.util.Random;
  */
 public class Genotype {
 
-    private final int size = 1000;
-    private final int numOfFunctions = 18;
-    private final int maxLookBack = 20;
+    private final int size = 300;
+    private final int numOfFunctions = 19;
+    private final int maxLookBack = 80;
 
     private Random random = new Random();
-    private phenotype net;
+    private Phenotype net;
+    private int fitness;
 
 
     int[][] genes = new int[size][3]; //inputA, inputB, function
@@ -23,14 +26,47 @@ public class Genotype {
 
     public Genotype(){
         for (int i = 0; i < size; i++) {
-            genes[i][0] = i<maxLookBack?random.nextInt(i):random.nextInt(i-20);
-            genes[i][1] = i<maxLookBack?random.nextInt(i):random.nextInt(i-20);
-            genes[i][2] = random.nextInt(numOfFunctions); //function cannot be 0
+            //needs to be redone
+            genes[i][0] = i==0?0:random.nextInt(i);
+            genes[i][1] = (i+maxLookBack>size)?random.nextInt(size):random.nextInt(i+maxLookBack);
+            genes[i][2] = random.nextInt(numOfFunctions);
         }
+        net = new Phenotype(genes);
     }
 
-    public void initialise(){
+    public void evaluate(){
+        //sets the fitness
+        //System.out.println(getGenes());
+        int uncoloredVerticies = 0;
+        fitness = 0;
+        ArrayList<int[]> graphColors = net.run();
+        for(int[] graphColorList: graphColors){
+            HashSet<Integer> set = new HashSet<>();
+            for (int i = 0; i < graphColorList.length; i++) {//minus points for uncolored nodes
+                if (graphColorList[i]==0){
+                    fitness+=50;
+                    uncoloredVerticies++;
+                }else{
+                    set.add(graphColorList[i]);
+                }
+            }
+            fitness+=set.size()*10;
+        }
+        //System.out.println("Uncolored Verticies: "+uncoloredVerticies);
+    }
 
+    public String toString(){
+        return net.toString();
+    }
+
+    public int getFitness(){
+        return fitness;
+    }
+
+    public void printGenes(){
+        for (int i = 0; i < genes.length; i++) {
+            System.out.println(i+") "+genes[i][0]+" "+genes[i][1]+" "+genes[i][2]);
+        }
     }
 
 }

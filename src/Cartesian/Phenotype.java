@@ -7,41 +7,57 @@ import Functions.Coloring.*;
 import Functions.Control.*;
 import Functions.VertexSearch.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by Brendan on 15/10/2017.
  */
-public class phenotype extends Tree {
+public class Phenotype extends Tree {
 
-    CartesianNode root = new CartesianNode();
+
     private int[][] genes;
     private CartesianNode[] nodes;
 
-    public phenotype(String sGenes) {
+    public Phenotype(String sGenes) {
         super(sGenes);
     }
 
-    public phenotype(int[][] genes){
+    public Phenotype(int[][] genes){
         super(genes);
         this.genes = genes;
         nodes = new CartesianNode[genes.length];
+        nodes[0] = new CartesianNode();//root
         init(genes.length-1);
     }
 
     private CartesianNode init(int i){
         if(nodes[i]==null){
             //init
-            nodes[i] = new CartesianNode(functionLookup(genes[i][2]));
-            if(genes[i][0]<=i && genes[i][1] <=1 ){ //if both inputs are behind the node
-                if(genes[i][0]==0 && genes[i][1]==0){ //this will be the starting node
+            nodes[i] = new CartesianNode(functionLookup(genes[i][2]),i);
+            if(genes[i][0]<=i && genes[i][1] <=i ){ //if both inputs are behind the node
                     nodes[i].setInupts(init(genes[i][0]),null);
-                }
-
-
-                //nodes[i].setInupts(init(genes[i]));
+            }else {
+                nodes[i].setInupts(init(genes[i][0]), genes[i][1] == 0 ? null : init(genes[i][1]));
             }
-            nodes[i].setInupts(init(genes[i][0]),genes[i][1]==0?null:init(genes[i][1]));
         }
         return nodes[i];
+    }
+
+    public ArrayList<int[]> run(){
+        ArrayList<int[]> finalGraphColors = new ArrayList<>();
+        for (int i = 0; i < graphs.size(); i++) {
+            currentGraph = graphs.get(i);
+            evaluateGraph();
+            finalGraphColors.add(graphColors);
+            nodes[0].run();
+        }
+        return finalGraphColors;
+    }
+
+    public void evaluateGraph(){
+        graphColors = new int[currentGraph.verticies.size()];
+        graphColorFreq = new int[currentGraph.verticies.size() + 1];
+
     }
 
     private Function functionLookup(int i){
@@ -84,5 +100,18 @@ public class phenotype extends Tree {
         }
         System.out.println("function number wrong: "+i);
         return null;
+    }
+
+    public String toString(){
+        String output = "";
+        for (int i = 0; i < nodes.length; i++) {
+            output+="\n"+i+") ";
+            if(nodes[i]==null){
+                 output+="null";
+            }else{
+                output+=nodes[i].toString();
+            }
+        }
+        return output;
     }
 }

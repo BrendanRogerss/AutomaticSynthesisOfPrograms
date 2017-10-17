@@ -31,6 +31,7 @@ public class Function {
     public Function(){}
     public void setFunctionLeft(Function a){this.left = a;}
     public void setFunctionRight(Function b){this.right = b;}
+    public void setFuncrions(Function a, Function b){this.left = a;this.right = b;}
     public int getInputs(){
         return 0;
     }

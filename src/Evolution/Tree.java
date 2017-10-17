@@ -168,6 +168,6 @@ public class Tree {
     }
 
     public Tree(int[][] genes){
-        //for phenotype
+        //for Phenotype
     }
 }
