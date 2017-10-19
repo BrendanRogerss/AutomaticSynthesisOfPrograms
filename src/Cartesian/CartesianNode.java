@@ -31,11 +31,11 @@ public class CartesianNode {
     }
 
     public void run(){
-        System.out.println(index);
+        //System.out.println(index);
         if(f!=null){
             f.run();
         }else{
-            System.out.println("null function");
+            //System.out.println("null function");
         }
 
 //        for (int i = 0; i < outputs.size(); i++) {
@@ -63,6 +63,10 @@ public class CartesianNode {
         }else{
             System.out.println("0utput already exists");
         }
+    }
+
+    public ArrayList<CartesianNode> getOutputs(){
+        return outputs;
     }
 
     public Function getFunction(){
