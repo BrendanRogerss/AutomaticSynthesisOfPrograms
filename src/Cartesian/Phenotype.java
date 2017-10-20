@@ -59,19 +59,21 @@ public class Phenotype extends Tree {
         graphColors = new int[currentGraph.verticies.size()];
         graphColorFreq = new int[currentGraph.verticies.size() + 1];
 
-
-
-
     }
 
-    public void runLoop(CartesianNode start, CartesianNode end){
-        while()
+    public void runLoop(CartesianNode start, CartesianNode decider){
+
     }
 
     public void executeSubNet(CartesianNode start, CartesianNode end){
         ArrayList<CartesianNode> nodesToExecute = new ArrayList<>();
         CartesianNode currentNode = start;
         while(currentNode.index!=end.index){
+            for(CartesianNode nextNode : currentNode.getOutputs()){
+                if(nextNode.index<currentNode.index){
+
+                }
+            }
             nodesToExecute.addAll(currentNode.getOutputs()); //get the first lot of nodes to execute
             //check for loop
             nodesToExecute.get(0).run();
