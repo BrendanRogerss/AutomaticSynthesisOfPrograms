@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Brendan on 14/10/2017.
  */
-public class CartesianNode {
+public class CartesianNode implements Comparable{
 
     public int index;
     private CartesianNode inputA;
@@ -30,12 +30,13 @@ public class CartesianNode {
         inputB = b;
     }
 
-    public void run(){
+    public boolean run(){
         //System.out.println(index);
         if(f!=null){
-            f.run();
+            return f.run();
         }else{
-            //System.out.println("null function");
+            if(index!=0)System.out.println("null function");
+            return false;
         }
 
 //        for (int i = 0; i < outputs.size(); i++) {
@@ -76,5 +77,11 @@ public class CartesianNode {
     public String toString(){
         return "output size: "+outputs.size();//+" "+f.getClass().getSimpleName();
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return outputs.size()-((CartesianNode)o).outputs.size();
+    }
+
 
 }

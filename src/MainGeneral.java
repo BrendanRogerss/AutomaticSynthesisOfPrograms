@@ -68,16 +68,25 @@ public class MainGeneral {
             if (population.get(0).getFitness() < highestFitness.getFitness()) {
                 highestFitness = population.get(0);
                 lastImprovement = 0;
+                System.out.println(population.get(0).getFitness());
             } else {
                 lastImprovement++;
             }
-            System.out.println(population.get(0).getFitness());
 
-        }while(lastImprovement!=100);
+
+        }while(lastImprovement!=10000);
         //}while(population.get(0).getFitness()<=860);
         System.out.println(highestFitness.getGenes());
         System.out.println(highestFitness.getFitness());
         population.get(0).printTree();
     }
 
+
+    public static void printMinimalColor(){
+        int v = 0;
+        for(Graph g : Tree.graphs){
+            v+=g.minimalColor;
+        }
+        System.out.println("minimal: "+v);
+    }
 }

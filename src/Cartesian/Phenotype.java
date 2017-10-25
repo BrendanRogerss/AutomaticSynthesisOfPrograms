@@ -8,6 +8,7 @@ import Functions.Control.*;
 import Functions.VertexSearch.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Brendan on 15/10/2017.
@@ -34,10 +35,11 @@ public class Phenotype extends Tree {
         if(nodes[i]==null){
             //init
             nodes[i] = new CartesianNode(functionLookup(genes[i][2]),i);
-            if(genes[i][0]<=i && genes[i][1] <=i ){ //if both inputs are behind the node
+            if(genes[i][0]<=i && genes[i][1] <=i || (genes[i][1]>i && nodes[genes[i][1]]==null) ){ //if both inputs are behind the node
                     nodes[i].setInupts(init(genes[i][0]),null);
             }else {
-                nodes[i].setInupts(init(genes[i][0]), genes[i][1] == 0 ? null : init(genes[i][1]));
+                //check if its upper input exists
+                    nodes[i].setInupts(init(genes[i][0]), genes[i][1] == 0 ? null : init(genes[i][1]));
             }
         }
         return nodes[i];
@@ -47,44 +49,67 @@ public class Phenotype extends Tree {
         ArrayList<int[]> finalGraphColors = new ArrayList<>();
         for (int i = 0; i < graphs.size(); i++) {
             currentGraph = graphs.get(i);
-            evaluateGraph();
-            nodes[0].run();
+            graphColors = new int[currentGraph.verticies.size()];
+            graphColorFreq = new int[currentGraph.verticies.size() + 1];
+            executeSubNet(nodes[0],nodes[nodes.length-1]);
             finalGraphColors.add(graphColors);
-
         }
         return finalGraphColors;
     }
 
-    public void evaluateGraph(){
-        graphColors = new int[currentGraph.verticies.size()];
-        graphColorFreq = new int[currentGraph.verticies.size() + 1];
-
-    }
-
     public void runLoop(CartesianNode start, CartesianNode decider){
-
+        int limit = 10;
+        int[] colors = new int[graphColors.length];
+        System.arraycopy(graphColors, 0, colors, 0, colors.length);
+        int timesSame = 0;
+        int timesRun = 0;
+        while(decider.run() && timesSame!= limit && timesRun != currentGraph.verticies.size()){
+            executeSubNet(start, decider);
+            if(checkChange(colors)){
+                System.arraycopy(graphColors, 0, colors, 0, colors.length);
+                timesSame = 0;
+            }else{
+                timesSame+=1;
+            }
+            timesRun++;
+        }
     }
+
+    private boolean checkChange(int[] lastKnown){
+        for (int i = 0; i < lastKnown.length; i++) {
+            if(lastKnown[i]!=graphColors[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void executeSubNet(CartesianNode start, CartesianNode end){
         ArrayList<CartesianNode> nodesToExecute = new ArrayList<>();
         CartesianNode currentNode = start;
         while(currentNode.index!=end.index){
-            for(CartesianNode nextNode : currentNode.getOutputs()){
-                if(nextNode.index<currentNode.index){
-
-                }
+            nodesToExecute=currentNode.getOutputs(); //get the first lot of nodes to execute
+            Collections.sort(nodesToExecute);
+            if(nodesToExecute.get(0).index<currentNode.index){//loop
+                //System.out.println("running loop from: "+nodesToExecute.get(0).index+" to: "+currentNode.index);
+                runLoop(nodesToExecute.get(0),currentNode);
             }
-            nodesToExecute.addAll(currentNode.getOutputs()); //get the first lot of nodes to execute
-            //check for loop
-            nodesToExecute.get(0).run();
-
+            int i=0;
+            while(nodesToExecute.get(i).index<=currentNode.index){
+                i++;
+            }
+            //System.out.println("executing: "+currentNode.index);
+            currentNode.run();
+            currentNode=nodesToExecute.get(i);
+            //System.out.println("got next: "+i);
 
         }
     }
 
     private Function functionLookup(int i){
         switch(i){
-            case 0: return new ExistUncoloredVertex(this);
+            case 18: return new ExistUncoloredVertex(this);
             case 1: return new NotIncrease(this);
             case 2: return new Greedy(this);
             case 3: return new GreedyAdjacents(this);
@@ -103,22 +128,8 @@ public class Phenotype extends Tree {
             case 15: return new MinimumDegreeVertex(this);
             case 16: return new MoreFrequentColorVertex(this);
             case 17: return new MoreUncoloredAdjacentsVertex(this);
-            case 18: return new SaturationDegreeVertex(this);
+            case 0: return new SaturationDegreeVertex(this);
 
-//            case 9: return new And();
-//            case 10: return new Equal();
-//            case 11: return new If();
-//            case 12: return new Not();
-//            case 13: return new Or();
-//            case 14: return new While(this);
-
-//            case 25 : return new ExistUncoloredVertex(this);
-//            case 26: return new And();
-//            case 27: return new Equal();
-//            case 28: return new If();
-//            case 29: return new Not();
-//            case 30: return new Or();
-//            case 31: return new While(this);
         }
         System.out.println("function number wrong: "+i);
         return null;
@@ -127,11 +138,9 @@ public class Phenotype extends Tree {
     public String toString(){
         String output = "";
         for (int i = 0; i < nodes.length; i++) {
-            output+="\n"+i+") ";
-            if(nodes[i]==null){
-                 output+="null";
-            }else{
-                output+=nodes[i].toString();
+
+            if(nodes[i]!=null){
+                output+="\n"+i+") "+nodes[i].toString();
             }
         }
         return output;

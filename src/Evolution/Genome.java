@@ -48,7 +48,7 @@ public class Genome implements Comparable {
                     set.add(graphColorList[i]);
                 }
             }
-            fitness+=set.size()*10;
+            fitness+=set.size();
         }
         //System.out.println("Uncolored Verticies: "+uncoloredVerticies);
     }

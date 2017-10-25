@@ -9,19 +9,20 @@ import java.util.Random;
  */
 public class Genotype {
 
-    private final int size = 300;
-    private final int numOfFunctions = 19;
-    private final int maxLookBack = 80;
+    public static final int size = 300;
+    public static final int numOfFunctions = 19;
+    public static final int maxLookBack = 80;
 
     private Random random = new Random();
     private Phenotype net;
     private int fitness;
 
 
-    int[][] genes = new int[size][3]; //inputA, inputB, function
+    public int[][] genes = new int[size][3]; //inputA, inputB, function
 
     public Genotype(int[][] inputGenes){
         genes = inputGenes;
+        net = new Phenotype(genes);
     }
 
     public Genotype(){
@@ -50,7 +51,7 @@ public class Genotype {
                     set.add(graphColorList[i]);
                 }
             }
-            fitness+=set.size()*10;
+            fitness+=set.size();
         }
         //System.out.println("Uncolored Verticies: "+uncoloredVerticies);
     }
@@ -67,6 +68,14 @@ public class Genotype {
         for (int i = 0; i < genes.length; i++) {
             System.out.println(i+") "+genes[i][0]+" "+genes[i][1]+" "+genes[i][2]);
         }
+    }
+
+    public void soutGenes(){
+        String output = "";
+        for (int i = 0; i < genes.length; i++) {
+            output+=genes[i][0]+" "+genes[i][1]+" "+genes[i][2]+" ";
+        }
+        System.out.println(output);
     }
 
 }
