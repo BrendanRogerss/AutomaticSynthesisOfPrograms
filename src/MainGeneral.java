@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class MainGeneral {
 
-    private Scanner scanner = new Scanner("Data");
+    private Scanner scanner = new Scanner("otherData");
     private int populationSize = 100;
     private Mutator mutator = new Mutator();
 
@@ -24,12 +24,7 @@ public class MainGeneral {
 
     private void run(){
         Tree.graphs = scanner.read();
-        int v = 0;
-        for(Graph g : Tree.graphs){
-            v+=g.minimalColor;
-        }
-        System.out.println(v*10);
-
+        printMinimalColor();
 
         //Genome g = new Genome("11111000000001001111");//greedy binary
         Genome g = new Genome("10000000000001101000");//greedy gray code

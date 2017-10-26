@@ -1,6 +1,5 @@
 package Evolution;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +7,7 @@ import java.util.Random;
  * Created by Brendan on 27/09/2017.
  */
 public class Mutator {
-    public int mutateChance = 5;
+    public int mutateChance = 3;
     private Random r = new Random();
 
     public String mutate(String gene){
@@ -63,35 +62,37 @@ public class Mutator {
         ArrayList<Genome> newPop = new ArrayList<>();
         ArrayList<Genome> oldPop = new ArrayList<>();
         oldPop.add(pop.remove(0));
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 10; i++) {
            int n = r.nextInt(100);
-            if(n < 30){
+            if(n < 20){
                 //get one from bottom 30
-                n = r.nextInt(30-i);
-                oldPop.add(pop.remove(n+70));
-            }else if(n<50){
+                n = r.nextInt(20-i);
+                oldPop.add(pop.remove(n+80));
+            }else if(n<40){
                 //get one between 30 and 70
-                n = r.nextInt(50-i);
-                oldPop.add(pop.remove(n+30));
+                n = r.nextInt(60-i);
+                oldPop.add(pop.remove(n+40));
             }else{
                 //get 70+
-                n = r.nextInt(30-i);
+                n = r.nextInt(40-i);
                 oldPop.add(pop.remove(n));
             }
         }
 
-        Genome temp = oldPop.remove(0);
+        Genome temp;// = oldPop.remove(0);
         //newPop.add(temp);
-        while(newPop.size()!=size) {
+        //while(newPop.size()!=size) {
+        for (int i = 0; i < 10; i++) {
+            temp = oldPop.get(i);
             //System.out.println("old: "+oldPop.size());
             //System.out.println("new: "+newPop.size());
             for (int j = 0; (j < 10); j++) {
-                newPop.add(new Genome(twoPointCrossover(temp.getGenes(),oldPop.get(r.nextInt(oldPop.size())).getGenes())));
+                newPop.add(new Genome(twoPointCrossover(temp.getGenes(),oldPop.get(j).getGenes())));
             }
             //newPop.add(temp);
-            temp = oldPop.remove(r.nextInt(oldPop.size()));
-        }
 
+        }
+        //System.out.println(newPop.size());
         return newPop;
     }
 }

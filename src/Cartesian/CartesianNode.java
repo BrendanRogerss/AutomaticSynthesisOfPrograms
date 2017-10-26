@@ -39,6 +39,15 @@ public class CartesianNode implements Comparable{
             return false;
         }
 
+        //need to order the nodes and not run them more than once outside a loop
+//        for(CartesianNode node : outputs){
+//            if(node.index<index){
+//                runLoop(node);
+//            }else{
+//                node.run();
+//            }
+//        }
+
 //        for (int i = 0; i < outputs.size(); i++) {
 //            CartesianNode node = outputs.remove(0);
 //            node.run();
@@ -75,7 +84,15 @@ public class CartesianNode implements Comparable{
     }
 
     public String toString(){
-        return "output size: "+outputs.size();//+" "+f.getClass().getSimpleName();
+        //return "output size: "+outputs.size();//+" "+f.getClass().getSimpleName();
+        String output =(f!=null?f.getClass().getSimpleName():" ")+" Inputs: ";
+        output+=inputA!=null?inputA.index+" ":"null ";
+        output+=inputB!=null?inputB.index+" ":"null ";
+        output+="Outputs: ";
+        for (CartesianNode node : outputs) {
+            output+=node.index+" ";
+        }
+        return output;
     }
 
     @Override
