@@ -11,6 +11,9 @@ import java.util.Collections;
  * Created by Brendan on 8/09/2017.
  */
 public class MainGeneral {
+    //1167
+    //0100100111010001000100111100110100100010010100001100010111110000100010101001010111001010011111111000011000001100111110000011001101110010111111111101101111010101
+
 
     private Scanner scanner = new Scanner("Data");
     private int populationSize = 100;
@@ -24,11 +27,7 @@ public class MainGeneral {
 
     private void run(){
         Tree.graphs = scanner.read();
-        int v = 0;
-        for(Graph g : Tree.graphs){
-            v+=g.minimalColor;
-        }
-        System.out.println(v*10);
+        printMinimalColor();
 
 
         //Genome g = new Genome("11111000000001001111");//greedy binary
@@ -69,6 +68,8 @@ public class MainGeneral {
                 highestFitness = population.get(0);
                 lastImprovement = 0;
                 System.out.println(population.get(0).getFitness());
+                System.out.println(population.get(0).getGenes());
+                population.get(0).printTree();
             } else {
                 lastImprovement++;
             }
