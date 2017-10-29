@@ -35,6 +35,16 @@ public class Genotype {
         net = new Phenotype(genes);
     }
 
+    public Genotype(String stringGenes){
+        String[] splited = stringGenes.split("\\s+");
+        for (int i = 0; i < genes.length; i++) {
+            genes[i][0] = Integer.parseInt(splited[i*3]);
+            genes[i][1] = Integer.parseInt(splited[i*3+1]);
+            genes[i][2] = Integer.parseInt(splited[i*3+2]);
+        }
+        net = new Phenotype(genes);
+    }
+
     public void evaluate(){
         //sets the fitness
         //System.out.println(getGenes());

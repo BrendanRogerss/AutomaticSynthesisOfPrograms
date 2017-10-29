@@ -38,7 +38,7 @@ public class While extends Function{
             //printColors(colors);
             right.run();
             if(checkChange(colors)){
-                System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
+                //System.arraycopy(t.graphColors, 0, colors, 0, colors.length);
                 timesSame = 0;
                 returnValue = true;
             }else{

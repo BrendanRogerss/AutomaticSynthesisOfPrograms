@@ -99,7 +99,7 @@ public class Phenotype extends Tree {
             while(nodesToExecute.get(i).index<=currentNode.index){
                 i++;
             }
-            //System.out.println("executing: "+currentNode.index);
+            //System.out.println(currentNode.index!=0?currentNode.index+") "+currentNode.getFunction().getClass().getSimpleName():"");
             currentNode.run();
             currentNode=nodesToExecute.get(i);
             //System.out.println("got next: "+i);
